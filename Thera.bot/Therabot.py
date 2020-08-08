@@ -1,10 +1,10 @@
-from nltk.chat.util import Chat, reflections
+from nltk_chat import Chat, reflections
 import operator
 import indicoio
 
 indicoio.config.api_key = 'e7541bae2f7fe8e37e4e142d47323add'
 
-gPats = [
+interactions = [
     [r"(.*) fine (.*)",
      "That is good"
      ],
@@ -197,8 +197,8 @@ gPats = [
 
     ["quit",
      ["Thank you for talking with me.",
-      "Good-bye.",
-      "Thank you, that will be $150.  Have a good day!"]],
+      "Good-bye, have a nice day.",
+      "Thank you, that will be ₹1000. Have a good day!"]],
 
     [r"(.*)",
      ["Please tell me more.",
@@ -322,7 +322,7 @@ def Therabot():
     print("------------------------------- AI Therapist System (THERABOT) -------------------------------")
     patient_form = form()
     if(int(patient_form[1]) < 18):
-        print("We require consent from your Parents to proceed")
+        print("We require consent from your parents to proceed.")
     else:
         print()
         print("--------------------- End of Form, Please Proceed to Therapy ----------------------")
@@ -331,9 +331,9 @@ def Therabot():
         print('and lower-case letters and punctuation.  Enter "quit" when done.')
         print('=' * 78)
         print("Hi", patient_form[0], ", how are you feeling today?")
-        chat = Chat(gPats, reflections, patient_form)
-        chat.converse()
-        x = chat.get_chat_list()
+        chatter = Chat(interactions, reflections)
+        chatter.converse()
+        x = chatter.get_chat_list()
         # print(x)
         clean_statement = ' '.join(x)
         Detect_Emotion(clean_statement)
