@@ -322,26 +322,3 @@ class Chat(object):
                 while user_input[-1] in "!.":
                     user_input = user_input[:-1]
                 print(self.respond(user_input))
-
-    def get_chat_list():
-      try:
-        soup = BeautifulSoup(html, "html.parser")
-        res_list = []
-      except Exception as e:
-        print(e)
-        return []
-      for i in soup.find('tbody').find_all('tr'):
-            try:
-              res_dic = {}
-              tds = i.find_all('td')
-              res_dic['reputation'] = int(tds[0].span.text.strip())
-              res_dic['username'] = tds[0].a.text.strip()
-              res_dic['message'] = tds[1].text.strip()
-              res_dic['date_str'] = tds[0].find_all('span')[1]['title']
-              res_dic['date'] = dateutil.parser.parse(res_dic['date_str'])
-              res_dic['message_id'] = int(tds[0].find_all('a')[1]['href'].split('=')[1])
-              res_list.append(res_dic)
-            except Exception as e:
-              print(e)
-              continue
-      return res_list

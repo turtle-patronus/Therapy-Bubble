@@ -318,8 +318,8 @@ def Detect_Emotion(e):
 
 
 
-def Therabot():
-    print("------------------------------- AI Therapist System (THERABOT) -------------------------------")
+def TherapyBubble():
+    print("------------------------------- AI Therapist System (THERAPUX) -------------------------------")
     patient_form = form()
     if(int(patient_form[1]) < 18):
         print("We require consent from your parents to proceed.")
@@ -327,11 +327,11 @@ def Therabot():
         print()
         print("--------------------- End of Form, Please Proceed to Therapy ----------------------")
         print()
-        print("Talk to Therabot by typing in plain English,")
+        print("Talk to Therapy Bubble by typing in plain English,")
         print('and lower-case letters and punctuation.  Enter "quit" when done.')
         print('=' * 78)
         print("Hi", patient_form[0], ", how are you feeling today?")
-        chatter = Chat(interactions, reflections)
+        chatter = Chat(interactions, reflections, patient_form)
         chatter.converse()
         x = chatter.get_chat_list()
         # print(x)
@@ -339,5 +339,5 @@ def Therabot():
         Detect_Emotion(clean_statement)
 
 if __name__ == "__main__":
-    Therabot()
+    TherapyBubble()
 

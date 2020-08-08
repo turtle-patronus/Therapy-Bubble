@@ -4,12 +4,12 @@ import sys
 import re
 import webbrowser
 import subprocess
-import Therabot
+import TherapyBubble
 
 def sofiaResponse(audio):
     "speaks audio passed as argument"
     print(audio)
-    for line in audio.splitlines():
+    for _ in audio.splitlines():
         os.system("say " + audio)
 
 
@@ -21,14 +21,14 @@ def myCommand():
         print('Say something...')
         r.pause_threshold = 1
         r.adjust_for_ambient_noise(source, duration=1)
-        audio = r.listen(source)
+        audio = r.listen(source,timeout=3)
     try:
         command = r.recognize_google(audio).lower()
         print('You said: ' + command + '\n')
     #loop back to continue to listen for commands if unrecognizable speech is received
     except sr.UnknownValueError:
         print('....')
-        command = myCommand();
+        command = myCommand()
     return command
 
 
@@ -51,7 +51,7 @@ def assistant(command):
                 sofiaResponse('The website you have requested has been opened for you Sir.')
 
     elif('launch therapy session' or 'i want to go in for therapy') in command:
-        return Therabot.Therabot()
+        return TherapyBubble.TherapyBubble()
 
     elif 'help me' in command:
         sofiaResponse("""
@@ -74,7 +74,7 @@ def assistant(command):
 
 
 def main():
-    sofiaResponse('Hi, I am Therabot''s personal Voice Assistant, '
+    sofiaResponse('Hi, I am Therapy Bubble''s personal Voice Assistant, '
                   'Please give a command or say "help me" and I will tell you what all I can do for you.')
     #loop to continue executing multiple commands
     while True:
