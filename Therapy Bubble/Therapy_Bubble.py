@@ -318,7 +318,7 @@ def Detect_Emotion(e):
 
 
 
-def TherapyBubble():
+def therapy_bubble():
     print("------------------------------- AI Therapist System (THERAPUX) -------------------------------")
     patient_form = form()
     if(int(patient_form[1]) < 18):
@@ -339,5 +339,5 @@ def TherapyBubble():
         Detect_Emotion(clean_statement)
 
 if __name__ == "__main__":
-    TherapyBubble()
+    therapy_bubble()
 

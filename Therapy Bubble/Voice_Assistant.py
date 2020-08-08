@@ -4,7 +4,7 @@ import sys
 import re
 import webbrowser
 import subprocess
-import TherapyBubble
+import Therapy_Bubble
 
 def sofiaResponse(audio):
     "speaks audio passed as argument"
@@ -51,7 +51,7 @@ def assistant(command):
                 sofiaResponse('The website you have requested has been opened for you Sir.')
 
     elif('launch therapy session' or 'i want to go in for therapy') in command:
-        return TherapyBubble.TherapyBubble()
+        return Therapy_Bubble.therapy_bubble()
 
     elif 'help me' in command:
         sofiaResponse("""
